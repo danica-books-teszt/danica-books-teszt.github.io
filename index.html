@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Alap meta -->
     <title>Danica Milánovics – Könyvek</title>
     <meta name="description" content="Ingyenesen letölthető könyvek, borítók és leírások egy helyen.">
 
@@ -29,14 +28,16 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&subset=latin-ext&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="styles.css">
-
-    <!-- Netlify Identity -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
     <style>
-        /* ⭐ Egységes felső navigáció (középre igazítva) */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Inter", sans-serif;
+            background: #eef1f5;
+            color: #2c3e50;
+        }
+
+        /* ⭐ Egységes felső navigáció */
         header {
             background: #1f3b5c;
             padding: 12px 20px;
@@ -46,7 +47,7 @@
 
         .navbar {
             display: flex;
-            justify-content: center;   /* <<< KÖZÉPRE IGAZÍTÁS */
+            justify-content: center;
             gap: 20px;
         }
 
@@ -59,6 +60,51 @@
 
         .navbar a:hover {
             text-decoration: underline;
+        }
+
+        /* ⭐ Modern hero szekció */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(to bottom right, #ffffff, #dfe6ee);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 14px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #217dbb;
+        }
+
+        /* ⭐ Lábléc */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #555;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -74,42 +120,17 @@
         </nav>
     </header>
 
-    <main>
+    <!-- ⭐ Modern hero szekció -->
+    <section class="hero">
+        <h1>Üdvözöllek a könyves oldalon!</h1>
+        <p>Fedezd fel a könyveket, amelyek inspirálnak, tanítanak és kikapcsolnak.</p>
+        <a href="konyvek.html" class="btn">Könyvek megtekintése</a>
+    </section>
 
-        <!-- ÚJ HERO SZEKCIÓ -->
-        <section class="hero">
-            <h1>Üdvözöllek a könyves oldalon!</h1>
-            <p>Fedezd fel a könyveket, amelyek inspirálnak, tanítanak és kikapcsolnak.</p>
-            <a href="konyvek.html" class="btn">Könyvek megtekintése</a>
-        </section>
-
-        <!-- Könyvlista -->
-        <div id="book-list" class="book-grid"></div>
-
-        <!-- Lapozás -->
-        <div class="pagination">
-            <button id="prev-btn" onclick="prevPage()">Előző</button>
-            <span id="page-number">1 / 1</span>
-            <button id="next-btn" onclick="nextPage()">Következő</button>
-        </div>
-
-    </main>
-
-    <!-- Könyvek JS -->
-    <script src="js/books.js"></script>
-
-    <!-- Netlify Identity redirect -->
-    <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-    </script>
+    <!-- ⭐ Lábléc -->
+    <footer>
+        © 2026 Danica Milánovics – Minden jog fenntartva.
+    </footer>
 
 </body>
 </html>
