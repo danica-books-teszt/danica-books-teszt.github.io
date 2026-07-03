@@ -15,14 +15,17 @@
       line-height: 1.6;
     }
 
-    /* Egységes felső navigáció */
+    /* ⭐ Egységes felső navigáció (középre igazítva) */
     .top-nav {
       background: #1f3b5c;
       padding: 12px 20px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .top-nav nav {
       display: flex;
+      justify-content: center;   /* <<< KÖZÉPRE IGAZÍTÁS */
       gap: 20px;
     }
 
@@ -43,7 +46,7 @@
       font-size: 2rem;
     }
 
-    /* GRID – szélesebb kártyák */
+    /* ⭐ GRID – szélesebb kártyák */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -53,7 +56,7 @@
       padding: 20px;
     }
 
-    /* Kártyák */
+    /* ⭐ Kártyák */
     .card {
       background: white;
       padding: 12px;
@@ -69,7 +72,7 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.18);
     }
 
-    /* Teljes borító látszódjon */
+    /* ⭐ Teljes borító látszódjon (contain) */
     .cover {
       width: 100%;
       aspect-ratio: 2 / 3;
@@ -111,6 +114,7 @@
 </head>
 <body>
 
+<!-- ⭐ Egységes fejléc -->
 <header class="top-nav">
   <nav>
     <a href="index.html">Főoldal</a>
