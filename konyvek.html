@@ -21,21 +21,24 @@
       font-size: 2rem;
     }
 
+    /* GRID – akár 6 kártya egy sorban */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 25px;
-      max-width: 1200px;
+      max-width: 1600px;
       margin: 0 auto;
     }
 
+    /* Kártyák – szélesebb, laposabb */
     .card {
       background: white;
-      padding: 20px;
+      padding: 15px;
       border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       transition: 0.2s;
       cursor: pointer;
+      text-align: center;
     }
 
     .card:hover {
@@ -43,24 +46,27 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.18);
     }
 
+    /* Egységes borítóarány: 2:3 */
     .cover {
       width: 100%;
-      height: auto;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
       border-radius: 8px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
     .title {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      min-height: 48px;
     }
 
     .author {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #555;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
     .btn {
@@ -71,7 +77,6 @@
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
-      margin-top: 10px;
       transition: 0.2s;
     }
 
@@ -103,10 +108,15 @@
           window.location.href = "book.html?file=" + book.file;
         };
 
+        let authorHTML = "";
+        if (book.author) {
+          authorHTML = `<div class="author">${book.author}</div>`;
+        }
+
         card.innerHTML = `
           <img class="cover" src="${book.cover}" alt="Borító">
           <div class="title">${book.title}</div>
-          <div class="author">${book.author}</div>
+          ${authorHTML}
           <a class="btn" href="book.html?file=${book.file}">Megnyitás</a>
         `;
 
