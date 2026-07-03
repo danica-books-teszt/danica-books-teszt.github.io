@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Danica Könyvek – Admin</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -139,7 +140,6 @@
   <div class="form-group">
     <label for="pdfUrl">Külső PDF link (opcionális):</label>
     <input type="text" id="pdfUrl" placeholder="https://.../konyv.pdf" />
-    <small>Ha megadsz külső linket, a rendszer azt használja a fájlfeltöltés helyett.</small>
     <small id="currentPdfInfo"></small>
   </div>
 
@@ -271,7 +271,7 @@
 
       currentBookFile = file;
       currentCoverPath = data.cover || data.coverPath || null;
-      currentPdfPath = data.pdf || data.pdfPath || null;
+      currentPdfPath = data.download || data.pdf || data.pdfPath || null;
 
       document.getElementById('title').value = data.title || '';
       document.getElementById('description').value = data.description || '';
@@ -284,9 +284,11 @@
       if (currentPdfPath) {
         const pdfInfoEl = document.getElementById('currentPdfInfo');
         const pdfUrlInput = document.getElementById('pdfUrl');
+
+        pdfUrlInput.value = currentPdfPath;
+
         if (typeof currentPdfPath === 'string' &&
             (currentPdfPath.startsWith('http://') || currentPdfPath.startsWith('https://'))) {
-          pdfUrlInput.value = currentPdfPath;
           pdfInfoEl.textContent = 'Jelenlegi PDF (külső link): ' + currentPdfPath;
         } else {
           pdfInfoEl.textContent =
@@ -343,6 +345,65 @@
     return path;
   }
 
+  async function regenerateBookList(token) {
+    try {
+      const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/data/books?ref=${BRANCH}`;
+      const res = await fetch(url, {
+        headers: {
+          'Accept': 'application/vnd.github+json',
+          'Authorization': 'Bearer ' + token
+        }
+      });
+
+      if (!res.ok) throw new Error('Nem sikerült lekérni a könyvlistát: ' + res.status);
+
+      const files = await res.json();
+
+      const jsonFiles = files
+        .filter(f => f.name.endsWith('.json') && f.name !== 'index.json')
+        .map(f => f.name)
+        .sort((a, b) => a.localeCompare(b));
+
+      const listJson = {
+        books: jsonFiles
+      };
+
+      const jsonString = JSON.stringify(listJson, null, 2);
+      const jsonBase64 = btoa(unescape(encodeURIComponent(jsonString)));
+
+      const indexPath = 'data/books/index.json';
+      const existingSha = await getFileSha(indexPath, token).catch(() => null);
+
+      const body = {
+        message: 'Automatikus list.json frissítés',
+        content: jsonBase64,
+        branch: BRANCH
+      };
+      if (existingSha) body.sha = existingSha;
+
+      const uploadUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${encodeURIComponent(indexPath)}`;
+      const uploadRes = await fetch(uploadUrl, {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/vnd.github+json',
+          'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(body)
+      });
+
+      if (!uploadRes.ok) {
+        const txt = await uploadRes.text();
+        throw new Error('list.json feltöltési hiba: ' + uploadRes.status + ' ' + txt);
+      }
+
+      return true;
+
+    } catch (e) {
+      showStatus('Hiba a list.json generálásakor: ' + e.message, true);
+      return false;
+    }
+  }
+
   async function saveBook() {
     const token = document.getElementById('token').value.trim();
     if (!token) {
@@ -390,7 +451,7 @@
         pdfPath = externalPdfUrl;
       } else if (pdfFileInput.files && pdfFileInput.files[0]) {
         const pdfFile = pdfFileInput.files[0];
-        const maxSize = 20 * 1024 * 1024; // ~20 MB, biztonságos REST API limit alatt
+        const maxSize = 20 * 1024 * 1024;
         if (pdfFile.size > maxSize) {
           const mb = Math.round(pdfFile.size / 1024 / 1024);
           showStatus(
@@ -439,7 +500,11 @@
         throw new Error('Hiba történt a JSON mentésekor: ' + res.status + ' ' + txt);
       }
 
-      showStatus('Könyv sikeresen mentve: ' + fileName);
+      // ⭐ Automatikus list.json frissítés
+      await regenerateBookList(token);
+
+      showStatus('Könyv és list.json sikeresen frissítve: ' + fileName);
+
     } catch (e) {
       showStatus(e.message, true);
     }
