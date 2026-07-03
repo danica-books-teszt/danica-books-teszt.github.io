@@ -10,14 +10,58 @@
       font-family: "Segoe UI", Arial, sans-serif;
       background: #eef1f5;
       margin: 0;
-      padding: 20px;
+      padding: 0;
       color: #2c3e50;
       line-height: 1.6;
     }
 
+    /* Felső fejléc */
+    header {
+      background: #3498db;
+      padding: 15px 25px;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: 0.2s;
+    }
+
+    header a:hover {
+      background: rgba(255,255,255,0.35);
+    }
+
+    /* Vissza gomb */
+    .back {
+      display: inline-block;
+      margin: 20px;
+      background: #3498db;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .back:hover {
+      background: #217dbb;
+    }
+
     h1 {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       font-size: 2rem;
     }
 
@@ -28,6 +72,7 @@
       gap: 25px;
       max-width: 1600px;
       margin: 0 auto;
+      padding: 20px;
     }
 
     /* Kártyák – szélesebb, laposabb */
@@ -46,15 +91,15 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.18);
     }
 
-    /* Egységes borítóarány: 2:3 */
+    /* Teljes borító látszódjon */
     .cover {
       width: 100%;
       aspect-ratio: 2 / 3;
-      object-fit: cover;
+      object-fit: contain;
+      background: #fff;
       border-radius: 8px;
       margin-bottom: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      max-height: 220px;
     }
 
     .title {
@@ -87,6 +132,13 @@
   </style>
 </head>
 <body>
+
+<header>
+  <div>Danica Milánovics – Könyvek</div>
+  <a href="index.html">Vissza a főoldalra</a>
+</header>
+
+<a class="back" href="index.html">← Vissza</a>
 
 <h1>Könyvek</h1>
 
