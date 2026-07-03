@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Könyv – Danica Milánovics</title>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #eef1f5;
+      margin: 0;
+      padding: 20px;
+      color: #2c3e50;
+      line-height: 1.6;
+      overflow-x: hidden; /* nincs vízszintes görgetés */
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 2rem;
+      color: #1a2530;
+      text-align: center;
+    }
+
+    /* 🔥 Kétoszlopos elrendezés nagy kijelzőn */
+    .layout {
+      display: flex;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .left {
+      flex: 0 0 320px; /* fix borítóoszlop */
+      text-align: center;
+    }
+
+    .right {
+      flex: 1;
+    }
+
+    img.cover {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      margin: 0 auto;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      white-space: pre-line;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      margin-bottom: 30px;
+    }
+
+    .downloads {
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #3498db;
+      color: white;
+      padding: 14px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 10px 0;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #217dbb;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 40px;
+      color: #555;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .back:hover {
+      color: #000;
+    }
+
+    /* 🔥 Mobilon egymás alá rendeződik */
+    @media (max-width: 800px) {
+      .layout {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .left {
+        flex: unset;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1 id="title">Betöltés...</h1>
+
+  <div class="layout">
+    <div class="left">
+      <img id="cover" class="cover" src="" alt="Borító" style="display:none;">
+    </div>
+
+    <div class="right">
+      <p id="description" class="description"></p>
+
+      <div id="downloads" class="downloads"></div>
+
+      <a href="index.html" class="back">← Vissza a könyvekhez</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const file = params.get("file");
+
+  if (!file) {
+    document.getElementById("title").innerText = "Hiba: nincs megadva könyv.";
+  } else {
+    loadBook(file);
+  }
+
+  async function loadBook(fileName) {
+    try {
+      const res = await fetch("data/books/" + fileName);
+      if (!res.ok) throw new Error("A könyv nem található.");
+      const data = await res.json();
+
+      document.getElementById("title").innerText = data.title;
+      document.getElementById("description").innerText = data.description;
+
+      if (data.cover) {
+        const cover = document.getElementById("cover");
+        cover.src = data.cover;
+        cover.style.display = "block";
+      }
+
+      const downloads = document.getElementById("downloads");
+      downloads.innerHTML = "";
+
+      if (data.download) {
+        downloads.innerHTML += `<a class="btn" href="${data.download}" target="_blank">Letöltés (PDF)</a><br>`;
+      }
+
+      if (data.attachment) {
+        downloads.innerHTML += `<a class="btn" href="${data.attachment.file}" target="_blank">${data.attachment.title}</a>`;
+      }
+
+    } catch (e) {
+      document.getElementById("title").innerText = "Hiba történt";
+      document.getElementById("description").innerText = e.message;
+    }
+  }
+</script>
+
+</body>
+</html>

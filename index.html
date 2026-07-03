@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Alap meta -->
+    <title>Danica Milánovics – Könyvek</title>
+    <meta name="description" content="Ingyenesen letölthető könyvek, borítók és leírások egy helyen.">
+
+    <!-- Open Graph (Facebook, Messenger, WhatsApp) -->
+    <meta property="og:title" content="Danica Milánovics – Könyvek">
+    <meta property="og:description" content="Ingyenesen letölthető könyvek, borítók és leírások egy helyen.">
+    <meta property="og:image" content="https://danica-books.github.io/images/alap-borito.jpg">
+    <meta property="og:url" content="https://danica-books.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="hu_HU">
+
+    <!-- Twitter Card (X) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Danica Milánovics – Könyvek">
+    <meta name="twitter:description" content="Ingyenesen letölthető könyvek, borítók és leírások egy helyen.">
+    <meta name="twitter:image" content="https://danica-books.github.io/images/alap-borito.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.png" type="image/png">
+
+    <!-- Google Font (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&subset=latin-ext&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Netlify Identity -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Danica Milánovics – Könyvek</h1>
+    </header>
+
+    <main>
+
+        <div id="book-list" class="book-grid"></div>
+
+        <div class="pagination">
+            <button id="prev-btn" onclick="prevPage()">Előző</button>
+            <span id="page-number">1 / 1</span>
+            <button id="next-btn" onclick="nextPage()">Következő</button>
+        </div>
+
+    </main>
+
+    <!-- Könyvek JS -->
+    <script src="js/books.js"></script>
+
+    <!-- Netlify Identity redirect -->
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+
+</body>
+</html>

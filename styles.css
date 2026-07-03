@@ -1,0 +1,107 @@
+/* --- FONT OVERRIDE (Netlify Identity felülírás ellen) --- */
+html, body {
+    font-family: 'Inter', sans-serif !important;
+    background: #F7F7F7;
+    margin: 0;
+    padding: 0;
+    color: #222;
+}
+
+/* --- HEADER --- */
+header {
+    background: #2C3E50;
+    color: white;
+    padding: 24px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+/* --- GRID --- */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    padding: 24px;
+}
+
+/* --- BOOK CARD --- */
+.book-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.book-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.book-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.book-card p {
+    margin: 0 0 12px 0;
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+/* --- LEÍRÁS TÖRDELÉS JAVÍTÁSA --- */
+.book-description {
+    white-space: pre-line;
+}
+
+/* --- DOWNLOAD BUTTON (javított classnév: download-btn) --- */
+.download-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 16px;
+    background: #0077CC;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.download-btn:hover {
+    background: #005fa3;
+}
+
+/* --- PAGINATION --- */
+.pagination {
+    text-align: center;
+    padding: 24px;
+}
+
+.pagination button {
+    padding: 10px 16px;
+    margin: 0 10px;
+    background: #0077CC;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+.pagination button:hover:not(:disabled) {
+    background: #005fa3;
+}
+
+.pagination button:disabled {
+    background: #999;
+    cursor: default;
+}
