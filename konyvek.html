@@ -15,57 +15,35 @@
       line-height: 1.6;
     }
 
-    /* Felső fejléc */
-    header {
-      background: #3498db;
-      padding: 15px 25px;
-      color: white;
-      font-size: 1.2rem;
-      font-weight: bold;
+    /* Egységes felső navigáció */
+    .top-nav {
+      background: #1f3b5c;
+      padding: 12px 20px;
+    }
+
+    .top-nav nav {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      gap: 20px;
     }
 
-    header a {
-      color: white;
+    .top-nav a {
+      color: #fff;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
       font-size: 1rem;
-      background: rgba(255,255,255,0.2);
-      padding: 8px 14px;
-      border-radius: 6px;
-      transition: 0.2s;
     }
 
-    header a:hover {
-      background: rgba(255,255,255,0.35);
-    }
-
-    /* Vissza gomb */
-    .back {
-      display: inline-block;
-      margin: 20px;
-      background: #3498db;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.2s;
-    }
-
-    .back:hover {
-      background: #217dbb;
+    .top-nav a:hover {
+      text-decoration: underline;
     }
 
     h1 {
       text-align: center;
-      margin-bottom: 20px;
+      margin: 25px 0;
       font-size: 2rem;
     }
 
-    /* GRID – szélesebb kártyák, akár 6 egy sorban */
+    /* GRID – szélesebb kártyák */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -75,7 +53,7 @@
       padding: 20px;
     }
 
-    /* Kártyák – szélesebb, laposabb */
+    /* Kártyák */
     .card {
       background: white;
       padding: 12px;
@@ -133,12 +111,13 @@
 </head>
 <body>
 
-<header>
-  <div>Danica Milánovics – Könyvek</div>
-  <a href="index.html">Vissza a főoldalra</a>
+<header class="top-nav">
+  <nav>
+    <a href="index.html">Főoldal</a>
+    <a href="konyvek.html">Könyvek</a>
+    <a href="bemutatkozas.html">Bemutatkozás</a>
+  </nav>
 </header>
-
-<a class="back" href="index.html">← Vissza</a>
 
 <h1>Könyvek</h1>
 
@@ -176,7 +155,8 @@
       });
 
     } catch (e) {
-      document.getElementById("grid").innerHTML = "<p>Hiba történt: " + e.message + "</p>";
+      document.getElementById("grid").innerHTML =
+        "<p>Hiba történt: " + e.message + "</p>";
     }
   }
 
