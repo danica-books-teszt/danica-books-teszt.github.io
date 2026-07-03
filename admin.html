@@ -301,8 +301,7 @@
       showStatus('Hiba a könyv betöltésekor: ' + e.message, true);
     }
   }
-
-  async function getFileSha(path, token) {
+    async function getFileSha(path, token) {
     const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${encodeURIComponent(path)}?ref=${BRANCH}`;
     const res = await fetch(url, {
       headers: {
