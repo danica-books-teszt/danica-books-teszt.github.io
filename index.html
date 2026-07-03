@@ -9,7 +9,7 @@
     <title>Danica Milánovics – Könyvek</title>
     <meta name="description" content="Ingyenesen letölthető könyvek, borítók és leírások egy helyen.">
 
-    <!-- Open Graph (Facebook, Messenger, WhatsApp) -->
+    <!-- Open Graph -->
     <meta property="og:title" content="Danica Milánovics – Könyvek">
     <meta property="og:description" content="Ingyenesen letölthető könyvek, borítók és leírások egy helyen.">
     <meta property="og:image" content="https://danica-books.github.io/images/alap-borito.jpg">
@@ -17,7 +17,7 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="hu_HU">
 
-    <!-- Twitter Card (X) -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Danica Milánovics – Könyvek">
     <meta name="twitter:description" content="Ingyenesen letölthető könyvek, borítók és leírások egy helyen.">
@@ -26,7 +26,7 @@
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.png" type="image/png">
 
-    <!-- Google Font (Inter) -->
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&subset=latin-ext&display=swap" rel="stylesheet">
 
     <!-- CSS -->
@@ -38,14 +38,28 @@
 
 <body>
 
+    <!-- ÚJ MENÜ -->
     <header>
-        <h1>Danica Milánovics – Könyvek</h1>
+        <nav class="navbar">
+            <a href="index.html">Főoldal</a>
+            <a href="konyvek.html">Könyvek</a>
+            <a href="bemutatkozas.html">Bemutatkozás</a>
+        </nav>
     </header>
 
     <main>
 
+        <!-- ÚJ HERO SZEKCIÓ -->
+        <section class="hero">
+            <h1>Üdvözöllek a könyves oldalon!</h1>
+            <p>Fedezd fel a könyveket, amelyek inspirálnak, tanítanak és kikapcsolnak.</p>
+            <a href="konyvek.html" class="btn">Könyvek megtekintése</a>
+        </section>
+
+        <!-- Könyvlista -->
         <div id="book-list" class="book-grid"></div>
 
+        <!-- Lapozás -->
         <div class="pagination">
             <button id="prev-btn" onclick="prevPage()">Előző</button>
             <span id="page-number">1 / 1</span>
