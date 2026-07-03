@@ -34,16 +34,43 @@
 
     <!-- Netlify Identity -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <style>
+        /* ⭐ Egységes felső navigáció (középre igazítva) */
+        header {
+            background: #1f3b5c;
+            padding: 12px 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;   /* <<< KÖZÉPRE IGAZÍTÁS */
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- ÚJ MENÜ -->
+    <!-- ⭐ Egységes fejléc -->
     <header>
         <nav class="navbar">
             <a href="index.html">Főoldal</a>
             <a href="konyvek.html">Könyvek</a>
-            <a href="bemutatkozas.html">Bemutatkozás</a>
+            <a href="bemutatkozás.html">Bemutatkozás</a>
         </nav>
     </header>
 
