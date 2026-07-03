@@ -11,8 +11,6 @@
             background: #f5f5f5;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
         }
 
         /* ⭐ Egységes felső navigáció (középre igazítva) */
@@ -25,7 +23,7 @@
 
         .top-nav nav {
             display: flex;
-            justify-content: center;   /* <<< KÖZÉPRE IGAZÍTÁS */
+            justify-content: center;
             gap: 20px;
         }
 
@@ -40,7 +38,7 @@
             text-decoration: underline;
         }
 
-        /* ⭐ Kártya */
+        /* ⭐ Kártya középre igazítva */
         .card {
             background: white;
             max-width: 700px;
@@ -49,7 +47,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             text-align: center;
-            margin-top: 30px;
+            margin: 30px auto; /* <<< EZ TESZI KÖZÉPRE */
         }
 
         .card img {
@@ -95,5 +93,7 @@
         </p>
     </div>
 
+</body>
+</html>
 </body>
 </html>
