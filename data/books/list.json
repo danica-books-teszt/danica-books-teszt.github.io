@@ -60,14 +60,14 @@
     "cover": "images/milanovics-danica-gorogorszagi-utinaplo-cover.jpg"
   },
   {
-    "file": "milanovics-danica-koronavirus-a-facebookon-2.json",
-    "title": "Milánovics Danica – Koronavírus a Facebookon (2. kötet)",
-    "cover": "images/milanovics-danica-koronavirus-a-facebookon-2-cover.jpg"
-  },
-  {
     "file": "milanovics-danica-koronavirus-a-facebookon.json",
     "title": "Milánovics Danica – Koronavírus a Facebookon",
     "cover": "images/milanovics-danica-koronavirus-a-facebookon-cover.jpg"
+  },
+  {
+    "file": "milanovics-danica-koronavirus-a-facebookon-2.json",
+    "title": "Milánovics Danica – Koronavírus a Facebookon (2. kötet)",
+    "cover": "images/milanovics-danica-koronavirus-a-facebookon-2-cover.jpg"
   },
   {
     "file": "milanovics-danica-te-vagy-az-hajnalcsillag.json",
